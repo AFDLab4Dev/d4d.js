@@ -1,0 +1,86 @@
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.src.js"></script>
+
+  <script src="//code.highcharts.com/maps/modules/map.js"></script>
+  <script src="  https://code.highcharts.com/maps/modules/exporting.js"></script>
+
+  <!-- Highchart/maps extension -->
+  <script src="http://code.highcharts.com/mapdata/custom/europe.js"></script>
+  <script src="http://code.highcharts.com/mapdata/custom/asia.js"></script>
+  <script src="http://code.highcharts.com/mapdata/custom/africa.js"></script>
+  <script src="http://code.highcharts.com/mapdata/custom/oceania.js"></script>
+  <script src="http://code.highcharts.com/mapdata/custom/middle-east.js"></script>
+  <script src="http://code.highcharts.com/mapdata/custom/north-america-no-central.js"></script>
+  <script src="http://code.highcharts.com/mapdata/custom/central-america.js"></script>
+  <script src="http://code.highcharts.com/mapdata/custom/south-america.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+
+  <script src="build/d4d.js"></script>
+<body>
+	<div id="timeserie_wdi"></div>
+  <div id="regionalmap_wdi"></div>
+  <div id="comparison_wdi"></div>
+  <div id="spider_wdi"></div>
+
+  <div id="timeserie_dhs"></div>
+  <div id="regionalmap_dhs"></div>
+  <div id="infranational_dhs" style="height:400px"></div>
+
+
+
+	<script type="text/javascript">
+
+
+// Execute test for WDI 
+	var API_params = {Furnisher: "WDI", Country_Select: "CMR", Ind_Select: ["IT.NET.USER.ZS"], end: "2010", start: "2000"};
+  console.log(d4d.common_ressources)
+
+  // timeserie
+  d4d.make('timeserie_wdi','timeserie', API_params, d4d.common_ressources)
+
+  //regionalmap
+  var API_params2 = {Furnisher: "WDI", Country_Select: "CMR", Ind_Select: ["IT.NET.USER.ZS"], end: "2010", start: "2010"};
+
+  d4d.make('regionalmap_wdi','regionalmap', API_params2, d4d.common_ressources)
+
+  // Comparison
+
+  var API_params3 = {Furnisher: "WDI", Country_Select: "CMR", Ind_Select: ["IT.NET.USER.ZS","NY.GDP.PCAP.KD.ZG"], end: "2010", start: "2000"};
+
+  d4d.make('comparison_wdi','comparison', API_params3, d4d.common_ressources)
+
+
+  // Spider
+
+  var API_params4 = {Furnisher: "WDI", Country_Select: "CMR", Ind_Select: ["IT.NET.USER.ZS","NY.GDP.PCAP.KD.ZG","AG.LND.FRST.ZS"], end: "2010", start: "2010"};
+
+  d4d.make('spider_wdi','spider', API_params4, d4d.common_ressources)
+
+
+  // Execute test for DHS
+
+  // timeserie
+  var API_params5 = {Furnisher: "DHS", Country_Select: "CMR", Ind_Select: ["FE_FRTR_W_CBR"], end: "2015", start: "2000"};
+
+  d4d.make('timeserie_dhs','timeserie', API_params5, d4d.common_ressources)
+
+
+
+
+  // regionalmap
+  var API_params6 = {Furnisher: "DHS", Country_Select: "CMR", Ind_Select: ["FE_FRTR_W_CBR"], end: "2015", start: "2000"};
+
+  d4d.make('regionalmap_dhs','regionalmap', API_params6, d4d.common_ressources)
+
+  // infranational 
+  var API_params7 = {Furnisher: "DHS", Country_Select: "CMR", Ind_Select: ["FE_FRTR_W_CBR"], end: "2015", start: "2000"};
+  d4d.make('infranational_dhs','infranational', API_params7, d4d.common_ressources)
+
+
+
+
+
+	</script>
+</body>
